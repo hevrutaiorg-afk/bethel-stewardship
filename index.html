@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tree of Life Stewardship Initiative · Beth El</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --soil:      #1C1509;
+      --bark:      #3D2B1F;
+      --root-dark: #2A1E0E;
+      --moss:      #4A7A3A;
+      --leaf:      #7DB55A;
+      --canopy:    #C8E6A0;
+      --gold:      #C8974A;
+      --parchment: #F5EED8;
+      --sky:       #1B3A5C;
+      --sky-light: #2D5A8C;
+      --white:     #FFFFFF;
+      --cream:     #FAF7EF;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --font-mono:    'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--bark);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════════════════
+       HERO — full-bleed tree image
+    ══════════════════════════════════════════════ */
+    .hero {
+      min-height: 100svh;
+      background-image: url('tree.png');
+      background-size: cover;
+      background-position: center center;
+      background-color: #0D1F0A;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2.5rem 1.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle top vignette so header text reads */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,20,10,0.72) 0%,
+        rgba(10,20,10,0.15) 25%,
+        rgba(10,20,10,0.0) 55%,
+        rgba(10,20,10,0.55) 100%
+      );
+      pointer-events: none;
+    }
+
+    .hero-text {
+      position: relative;
+      text-align: center;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      animation: fadeDown 0.8s ease 0.2s forwards;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: fadeDown 0.8s ease 0.4s forwards;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--canopy);
+    }
+
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: rgba(200,230,160,0.8);
+      opacity: 0;
+      animation: fadeDown 0.8s ease 0.6s forwards;
+      margin-bottom: 0;
+    }
+
+    /* Scroll hint — pinned to bottom of hero */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(200,230,160,0.6);
+      opacity: 0;
+      animation: fadeIn 1s ease 1.4s forwards;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════════════════
+       SHARED SECTION STYLES
+    ══════════════════════════════════════════════ */
+    .section {
+      padding: 5rem 2rem;
+    }
+
+    .inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .section-eye {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.7rem;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    h2 em { font-style: italic; }
+
+    .lead-text {
+      font-size: 1.05rem;
+      max-width: 620px;
+      margin-bottom: 2.8rem;
+      line-height: 1.8;
+    }
+
+    /* Reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ══════════════════════════════════════════════
+       ROOTS SECTION
+    ══════════════════════════════════════════════ */
+    #roots {
+      background: var(--root-dark);
+      color: var(--parchment);
+    }
+
+    #roots h2 { color: var(--gold); }
+    #roots h2 em { color: var(--canopy); }
+    #roots .lead-text { color: rgba(245,238,216,0.8); }
+
+    .roots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .root-item {
+      border-left: 2px solid var(--gold);
+      padding-left: 1.2rem;
+    }
+
+    .root-item h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--canopy);
+      margin-bottom: 0.3rem;
+    }
+
+    .root-item p {
+      font-size: 0.85rem;
+      color: rgba(245,238,216,0.65);
+      line-height: 1.6;
+    }
+
+    .roots-inscription {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(200,151,74,0.25);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(200,151,74,0.7);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* ══════════════════════════════════════════════
+       TRUNK SECTION
+    ══════════════════════════════════════════════ */
+    #trunk {
+      background: var(--bark);
+      color: var(--parchment);
+    }
+
+    #trunk h2 { color: var(--white); }
+    #trunk h2 em { color: var(--gold); }
+    #trunk .lead-text { color: rgba(245,238,216,0.75); }
+
+    .trunk-stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: rgba(245,238,216,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .trunk-stat {
+      background: var(--bark);
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+    }
+
+    .trunk-stat .num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .trunk-stat .label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,238,216,0.5);
+    }
+
+    /* ══════════════════════════════════════════════
+       BRANCHES — PROGRAMS
+    ══════════════════════════════════════════════ */
+    #branches {
+      background: var(--cream);
+      color: var(--soil);
+    }
+
+    #branches h2 { color: var(--sky); }
+    #branches h2 em { color: var(--moss); }
+
+    /* Four moves */
+    .moves-band {
+      background: var(--moss);
+      padding: 3rem 2rem;
+    }
+
+    .moves-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 2rem;
+    }
+
+    .move {
+      color: var(--white);
+    }
+
+    .move-word {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--canopy);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .move p {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+    }
+
+    /* Program cards */
+    .program-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 4px;
+      border-top: 4px solid var(--moss);
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 1px 8px rgba(28,21,9,0.06);
+    }
+
+    .card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--sky);
+      margin-bottom: 0.2rem;
+    }
+
+    .card .focus {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      font-size: 0.85rem;
+      color: var(--bark);
+      padding: 0.35rem 0 0.35rem 1.1rem;
+      border-bottom: 1px solid var(--parchment);
+      position: relative;
+    }
+
+    .card ul li:last-child { border-bottom: none; }
+
+    .card ul li::before {
+      content: '↳';
+      position: absolute;
+      left: 0;
+      color: var(--moss);
+      font-size: 0.7rem;
+      top: 0.4rem;
+    }
+
+    /* ══════════════════════════════════════════════
+       LEAVES — PARTICIPANTS
+    ══════════════════════════════════════════════ */
+    #leaves {
+      background: var(--sky);
+      color: var(--white);
+      padding: 5rem 2rem;
+    }
+
+    #leaves h2 { color: var(--canopy); }
+    #leaves h2 em { color: var(--gold); }
+    #leaves .lead-text { color: rgba(200,230,160,0.8); }
+
+    .leaves-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .leaf-tag {
+      background: rgba(200,230,160,0.12);
+      border: 1px solid rgba(200,230,160,0.3);
+      color: var(--canopy);
+      font-size: 0.85rem;
+      padding: 0.45rem 1rem;
+      border-radius: 40px;
+      font-family: var(--font-body);
+    }
+
+    /* ══════════════════════════════════════════════
+       FRUIT — OUTCOMES
+    ══════════════════════════════════════════════ */
+    #fruit {
+      background: var(--parchment);
+      color: var(--soil);
+    }
+
+    #fruit h2 { color: var(--bark); }
+    #fruit h2 em { color: var(--moss); }
+
+    .fruit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .fruit-item {
+      background: var(--white);
+      padding: 1.8rem;
+      border-radius: 4px;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .fruit-item .icon {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .fruit-item h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--sky);
+      margin-bottom: 0.4rem;
+    }
+
+    .fruit-item p {
+      font-size: 0.83rem;
+      color: var(--bark);
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════════════
+       SEEDS — NEXT GENERATION
+    ══════════════════════════════════════════════ */
+    #seeds {
+      background: var(--soil);
+      color: var(--parchment);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    #seeds h2 { color: var(--gold); }
+    #seeds h2 em { color: var(--canopy); }
+
+    #seeds .lead-text {
+      color: rgba(245,238,216,0.75);
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    .seeds-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.55rem);
+      color: var(--canopy);
+      max-width: 680px;
+      margin: 0 auto 1rem;
+      line-height: 1.55;
+    }
+
+    .seeds-attr {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200,151,74,0.55);
+      display: block;
+      margin-top: 1.2rem;
+    }
+
+    /* ══════════════════════════════════════════════
+       QUICK WINS STRIP
+    ══════════════════════════════════════════════ */
+    .wins-strip {
+      background: var(--moss);
+      padding: 4rem 2rem;
+    }
+
+    .wins-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .wins-inner .section-eye { color: var(--canopy); }
+    .wins-inner h2 { color: var(--white); margin-bottom: 2rem; }
+
+    .wins-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    @media (max-width: 580px) { .wins-cols { grid-template-columns: 1fr; } }
+
+    .wins-col h3 {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200,230,160,0.65);
+      border-bottom: 1px solid rgba(200,230,160,0.2);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .wins-col ul { list-style: none; padding: 0; }
+
+    .wins-col ul li {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.85);
+      padding: 0.45rem 0 0.45rem 1.2rem;
+      border-bottom: 1px solid rgba(200,230,160,0.1);
+      position: relative;
+    }
+
+    .wins-col ul li:last-child { border-bottom: none; }
+
+    .wins-col ul li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.55rem;
+      top: 0.65rem;
+    }
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+    footer {
+      background: var(--soil);
+      color: rgba(245,238,216,0.35);
+      text-align: center;
+      padding: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+    }
+
+    footer strong { color: var(--gold); }
+
+    /* ══════════════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════════════ */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes growPath {
+      from { stroke-dashoffset: 1; }
+      to   { stroke-dashoffset: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      .tree-wrap, .eyebrow, .hero h1, .hero-tagline { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="eyebrow">North Suburban Synagogue Beth El · Highland Park, IL</span>
+    <h1>Tree of Life<br><em>Stewardship Initiative</em></h1>
+    <p class="hero-tagline">A living framework for youth, family &amp; community</p>
+  </div>
+  <p class="scroll-hint">Explore the tree ↓</p>
+</section>
+
+<!-- ══ ROOTS ══════════════════════════════════════════════ -->
+<section class="section" id="roots">
+  <div class="inner">
+    <span class="section-eye reveal">The Roots</span>
+    <h2 class="reveal">Where it all <em>begins</em></h2>
+    <p class="lead-text reveal">Jewish tradition does not treat the earth as backdrop. It treats the earth as covenant. These are the values that anchor everything we build.</p>
+    <div class="roots-grid reveal">
+      <div class="root-item">
+        <h3>Tikkun Olam</h3>
+        <p>Repair of the world — not as metaphor but as practice. Every seed planted is an act of repair.</p>
+      </div>
+      <div class="root-item">
+        <h3>Bal Tashchit</h3>
+        <p>Do not destroy needlessly. The Torah's first environmental law. The root of every recycling sign we hang.</p>
+      </div>
+      <div class="root-item">
+        <h3>L'dor V'dor</h3>
+        <p>From generation to generation. The obligation to transmit what we've learned — and what we've grown.</p>
+      </div>
+      <div class="root-item">
+        <h3>Shmirat HaAdamah</h3>
+        <p>Guarding the earth. An ancient obligation that has never been more urgent.</p>
+      </div>
+    </div>
+    <p class="roots-inscription reveal">These values were tested in soil before they were written in text.</p>
+  </div>
+</section>
+
+<!-- ══ TRUNK ══════════════════════════════════════════════ -->
+<section class="section" id="trunk">
+  <div class="inner">
+    <span class="section-eye reveal">The Trunk</span>
+    <h2 class="reveal">Beth El is the <em>shared structure</em></h2>
+    <p class="lead-text reveal">A healthy congregation is not a collection of programs. It is a living system — held together by shared memory, shared obligation, and shared hope. The trunk holds everything.</p>
+    <div class="trunk-stat-row reveal">
+      <div class="trunk-stat">
+        <span class="num">3</span>
+        <span class="label">Youth Communities</span>
+      </div>
+      <div class="trunk-stat">
+        <span class="num">4</span>
+        <span class="label">Moves: Notice · Learn · Act · Lead</span>
+      </div>
+      <div class="trunk-stat">
+        <span class="num">∞</span>
+        <span class="label">Generations of obligation</span>
+      </div>
+    </div>
+    <p class="lead-text reveal" style="margin-bottom:0;">The sustainability committee isn't managing waste.<br>It's tending the tree.</p>
+  </div>
+</section>
+
+<!-- ══ FOUR MOVES BAND ══════════════════════════════════ -->
+<div class="moves-band">
+  <div class="moves-inner reveal">
+    <div class="move">
+      <span class="move-word">Notice</span>
+      <p>Awareness, curiosity, and observation. Nature walks, signage, seasonal rhythms.</p>
+    </div>
+    <div class="move">
+      <span class="move-word">Learn</span>
+      <p>Jewish values, workshops, learning stations, community partnerships.</p>
+    </div>
+    <div class="move">
+      <span class="move-word">Act</span>
+      <p>Cleanup days, native plantings, waste reduction, community science.</p>
+    </div>
+    <div class="move">
+      <span class="move-word">Lead</span>
+      <p>Teen cohorts, student campaigns, mentorship, family engagement.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BRANCHES ══════════════════════════════════════════ -->
+<section class="section" id="branches">
+  <div class="inner">
+    <span class="section-eye reveal">The Branches</span>
+    <h2 class="reveal">Programs that <em>extend outward</em></h2>
+    <p class="lead-text reveal">Every branch carries the same sap — Jewish values, ecological awareness, human flourishing. Each community engages at the depth that fits where they are.</p>
+    <div class="program-cards reveal">
+      <div class="card">
+        <h3>Café Kef</h3>
+        <span class="focus">Families &amp; Elementary · Wonder &amp; Curiosity</span>
+        <ul>
+          <li>Seed planting &amp; nature journaling</li>
+          <li>Compost demonstrations</li>
+          <li>Recycling games &amp; crafts</li>
+          <li>Pollinator activities</li>
+          <li>Seasonal stewardship station</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Chaverim &amp; Gesher</h3>
+        <span class="focus">Middle School · Participation &amp; Responsibility</span>
+        <ul>
+          <li>Community cleanup events</li>
+          <li>Habitat &amp; planting projects</li>
+          <li>Family stewardship days</li>
+          <li>Citizen science</li>
+          <li>Community service</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>BEANS</h3>
+        <span class="focus">High School · Leadership &amp; Impact</span>
+        <ul>
+          <li>Sustainability ambassadors</li>
+          <li>Event &amp; campaign leadership</li>
+          <li>Community education</li>
+          <li>Mentorship of younger students</li>
+          <li>Student-designed initiatives</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LEAVES ══════════════════════════════════════════ -->
+<section id="leaves">
+  <div class="inner">
+    <span class="section-eye reveal">The Leaves</span>
+    <h2 class="reveal">Everyone has a <em>place on the tree</em></h2>
+    <p class="lead-text reveal">Leaves are seasonal, renewable, and each one different. You don't need to be an expert. You don't need to already care deeply. You just need to show up.</p>
+    <div class="leaves-flow reveal">
+      <span class="leaf-tag">Toddlers at Café Kef</span>
+      <span class="leaf-tag">Elementary schoolers</span>
+      <span class="leaf-tag">Middle schoolers</span>
+      <span class="leaf-tag">High school leaders</span>
+      <span class="leaf-tag">Parents &amp; grandparents</span>
+      <span class="leaf-tag">Volunteers</span>
+      <span class="leaf-tag">Lifelong learners</span>
+      <span class="leaf-tag">New members</span>
+      <span class="leaf-tag">Empty nesters</span>
+      <span class="leaf-tag">Teachers</span>
+      <span class="leaf-tag">Curious beginners</span>
+      <span class="leaf-tag">This year's BEANS cohort</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FRUIT ══════════════════════════════════════════════ -->
+<section class="section" id="fruit">
+  <div class="inner">
+    <span class="section-eye reveal">The Fruit</span>
+    <h2 class="reveal">What we're actually <em>growing</em></h2>
+    <p class="lead-text reveal">Outcomes aren't checkboxes. They're what happens when roots, trunk, branches, and leaves are all healthy at once.</p>
+    <div class="fruit-grid reveal">
+      <div class="fruit-item">
+        <span class="icon">🌿</span>
+        <h3>Ecological literacy</h3>
+        <p>Children and teens who understand living systems — and see themselves as part of them.</p>
+      </div>
+      <div class="fruit-item">
+        <span class="icon">✡️</span>
+        <h3>Jewish identity</h3>
+        <p>Environmental action rooted in values, not trends. Stewardship as spiritual practice.</p>
+      </div>
+      <div class="fruit-item">
+        <span class="icon">🤝</span>
+        <h3>Community belonging</h3>
+        <p>Families who know each other. Teens who feel ownership. A congregation with shared purpose.</p>
+      </div>
+      <div class="fruit-item">
+        <span class="icon">🌱</span>
+        <h3>Youth leadership</h3>
+        <p>Teens who have run real projects, made real decisions, and earned real trust.</p>
+      </div>
+      <div class="fruit-item">
+        <span class="icon">📖</span>
+        <h3>Institutional memory</h3>
+        <p>Stories, photos, and lessons that don't disappear when a cohort graduates.</p>
+      </div>
+      <div class="fruit-item">
+        <span class="icon">✨</span>
+        <h3>Joy</h3>
+        <p>Because if it doesn't feel good to show up, we've already lost the plot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ QUICK WINS ═════════════════════════════════════════ -->
+<div class="wins-strip">
+  <div class="wins-inner">
+    <span class="section-eye reveal">Getting Started</span>
+    <h2 class="reveal">Quick wins &amp; year-one goals</h2>
+    <div class="wins-cols reveal">
+      <div class="wins-col">
+        <h3>Immediate</h3>
+        <ul>
+          <li>Professional recycling signage throughout the building</li>
+          <li>Café Kef stewardship station rotation</li>
+          <li>Reverse Tashlich event</li>
+          <li>Family nature walk series launch</li>
+        </ul>
+      </div>
+      <div class="wins-col">
+        <h3>Year One</h3>
+        <ul>
+          <li>Teen stewardship leadership track</li>
+          <li>Native planting project on synagogue grounds</li>
+          <li>Community cleanup initiatives</li>
+          <li>Stewardship Hub web presence</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SEEDS ══════════════════════════════════════════════ -->
+<section id="seeds">
+  <div class="inner">
+    <span class="section-eye reveal">The Seeds</span>
+    <h2 class="reveal">What we leave behind for <em>whoever comes next</em></h2>
+    <p class="lead-text reveal">A seed doesn't know what it will become. It carries the instructions forward anyway. The goal of this initiative is not programs. It is culture — the kind that lives on after any one of us has moved on.</p>
+    <p class="seeds-quote reveal">"Create a congregational culture in which stewardship becomes a visible and meaningful expression of Jewish life."</p>
+    <span class="seeds-attr reveal">Beth El Tree of Life Stewardship Initiative · Vision Statement · 2026</span>
+    <p class="seeds-quote reveal" style="font-size: clamp(0.9rem, 2vw, 1.1rem); margin-top: 2rem; color: rgba(200,230,160,0.5);">Beth El is where this begins. It will not be where it ends.</p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  <strong>North Suburban Synagogue Beth El</strong> &nbsp;·&nbsp; Highland Park, IL &nbsp;·&nbsp; Youth &amp; Family Engagement &nbsp;·&nbsp; Draft Framework 2026
+</footer>
+
+<script>
+  // ── Scroll reveals ──────────────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('on');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
