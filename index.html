@@ -235,7 +235,7 @@
     }
 
     /* ══════════════════════════════════════════════
-       TRUNK SECTION
+       TRUNK — Honi block
     ══════════════════════════════════════════════ */
     #trunk {
       background: var(--bark);
@@ -244,40 +244,32 @@
 
     #trunk h2 { color: var(--white); }
     #trunk h2 em { color: var(--gold); }
-    #trunk .lead-text { color: rgba(245,238,216,0.75); }
+    #trunk .lead-text { color: rgba(245,238,216,0.78); }
 
-    .trunk-stat-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1px;
-      background: rgba(245,238,216,0.1);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-bottom: 2rem;
+    .honi-block {
+      border-left: 4px solid var(--gold);
+      padding: 1.4rem 1.8rem;
+      margin: 0 0 2rem;
+      background: rgba(200,151,74,0.07);
+      border-radius: 0 4px 4px 0;
     }
 
-    .trunk-stat {
-      background: var(--bark);
-      padding: 1.8rem 1.5rem;
-      text-align: center;
-    }
-
-    .trunk-stat .num {
+    .honi-quote {
       font-family: var(--font-display);
-      font-size: 2.2rem;
-      font-weight: 700;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
       color: var(--gold);
-      display: block;
-      line-height: 1;
-      margin-bottom: 0.3rem;
+      line-height: 1.6;
+      margin-bottom: 0.6rem;
     }
 
-    .trunk-stat .label {
+    .honi-attr {
       font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(245,238,216,0.5);
+      color: rgba(200,151,74,0.55);
+      display: block;
     }
 
     /* ══════════════════════════════════════════════
@@ -637,22 +629,19 @@
   <div class="inner">
     <span class="section-eye reveal">The Trunk</span>
     <h2 class="reveal">Beth El is the <em>shared structure</em></h2>
-    <p class="lead-text reveal">A healthy congregation is not a collection of programs. It is a living system — held together by shared memory, shared obligation, and shared hope. The trunk holds everything.</p>
-    <div class="trunk-stat-row reveal">
-      <div class="trunk-stat">
-        <span class="num">3</span>
-        <span class="label">Youth Communities</span>
-      </div>
-      <div class="trunk-stat">
-        <span class="num">4</span>
-        <span class="label">Moves: Notice · Learn · Act · Lead</span>
-      </div>
-      <div class="trunk-stat">
-        <span class="num">∞</span>
-        <span class="label">Generations of obligation</span>
-      </div>
+
+    <div class="honi-block reveal">
+      <p class="honi-quote">"I did not find this world desolate when I entered it. My ancestors planted for me. I plant for those who come after me."</p>
+      <span class="honi-attr">Honi the Circle Maker, upon seeing an old man plant a carob tree · Talmud, Ta'anit 23a</span>
     </div>
-    <p class="lead-text reveal" style="margin-bottom:0;">The sustainability committee isn't managing waste.<br>It's tending the tree.</p>
+
+    <p class="lead-text reveal">Honi asked the old man why he was planting — a carob tree takes 70 years to bear fruit. He would never taste it. The man answered without hesitation. He planted anyway.</p>
+
+    <p class="lead-text reveal">Beth El is that tree. Families with toddlers and teenagers. Empty nesters who remember when the building was new. Kids planting their first seed. Teens running their first event. Grandparents watching it all happen. The trunk holds all of it — not because it is perfect, but because it has been here, and because people keep showing up to tend it.</p>
+
+    <p class="lead-text reveal" style="margin-bottom: 0.5rem;">But Honi's story has a shadow. When he woke after 70 years, the carob tree was there — fruiting, exactly as promised. His hevruta partners were gone. His community was gone. No one knew him anymore. And the Talmud says he died of grief.</p>
+
+    <p class="lead-text reveal" style="font-style: italic; color: var(--moss); margin-bottom: 0;">The tree survived. The community did not tend each other. We are planting both.</p>
   </div>
 </section>
 
@@ -729,7 +718,7 @@
     <h2 class="reveal">Everyone has a <em>place on the tree</em></h2>
     <p class="lead-text reveal">Leaves are seasonal, renewable, and each one different. You don't need to be an expert. You don't need to already care deeply. You just need to show up.</p>
     <div class="leaves-flow reveal">
-      <span class="leaf-tag">Café Kef</span>
+      <span class="leaf-tag">Toddlers at Café Kef</span>
       <span class="leaf-tag">Elementary schoolers</span>
       <span class="leaf-tag">Middle schoolers</span>
       <span class="leaf-tag">High school leaders</span>
