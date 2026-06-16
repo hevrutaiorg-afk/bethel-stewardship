@@ -119,6 +119,53 @@
       margin-bottom: 0;
     }
 
+    .etz-chayim {
+      margin-top: 1.8rem;
+      padding: 1.2rem 1.8rem;
+      border-top: 1px solid rgba(200,151,74,0.3);
+      border-bottom: 1px solid rgba(200,151,74,0.3);
+      text-align: center;
+      opacity: 0;
+      animation: fadeDown 0.8s ease 0.8s forwards;
+    }
+
+    .etz-hebrew {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--gold);
+      line-height: 1.8;
+      margin-bottom: 0.4rem;
+      direction: rtl;
+      unicode-bidi: bidi-override;
+    }
+
+    .etz-transliteration {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(0.85rem, 1.8vw, 1rem);
+      color: rgba(200,230,160,0.7);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .etz-english {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: var(--white);
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .etz-source {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200,151,74,0.6);
+      display: block;
+    }
+
     .scroll-arrow {
       position: absolute;
       bottom: 2rem;
@@ -603,6 +650,12 @@
     <span class="eyebrow">North Suburban Synagogue Beth El · Highland Park, IL</span>
     <h1>Tree of Life<br><em>Stewardship Initiative</em></h1>
     <p class="hero-tagline">A living framework for youth, family &amp; community</p>
+    <div class="etz-chayim">
+      <p class="etz-hebrew">עֵץ חַיִּים הִיא לַמַּחֲזִיקִים בָּהּ וְתֹמְכֶיהָ מְאֻשָּׁר</p>
+      <p class="etz-transliteration">Etz chayim hi la'machazikim bah, v'tom'cheha me'ushar.</p>
+      <p class="etz-english">"It is a tree of life to those who hold fast to it,<br>and all who support it are fortunate."</p>
+      <span class="etz-source">Proverbs 3:18</span>
+    </div>
   </div>
   <a href="#roots" class="scroll-arrow" aria-label="Scroll down">↓</a>
 
@@ -651,7 +704,7 @@
 
     <div class="honi-block reveal">
       <p class="honi-quote">"I did not find this world desolate when I entered it. My ancestors planted for me. I plant for those who come after me."</p>
-      <span class="honi-attr">An old man planting a carob tree · "Honi and the Carob Tree" · Ta'anit 23a</span>
+      <span class="honi-attr">Honi the Circle Maker, upon seeing an old man plant a carob tree · Talmud, Ta'anit 23a</span>
     </div>
 
     <p class="lead-text reveal">Honi asked the old man why he was planting — a carob tree takes 70 years to bear fruit. He would never taste it. The man answered without hesitation. He planted anyway.</p>
@@ -735,9 +788,9 @@
   <div class="inner">
     <span class="section-eye reveal">The Leaves</span>
     <h2 class="reveal">Everyone has a <em>place on the tree</em></h2>
-    <p class="lead-text reveal">Leaves are seasonal, renewable, and each one different. You don't need to be an expert. You just need to show up.</p>
+    <p class="lead-text reveal">Leaves are seasonal, renewable, and each one different. You don't need to be an expert. You don't need to already care deeply. You just need to show up.</p>
     <div class="leaves-flow reveal">
-      <span class="leaf-tag">Café Kef</span>
+      <span class="leaf-tag">Toddlers at Café Kef</span>
       <span class="leaf-tag">Elementary schoolers</span>
       <span class="leaf-tag">Middle schoolers</span>
       <span class="leaf-tag">High school leaders</span>
