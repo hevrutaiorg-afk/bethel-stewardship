@@ -119,22 +119,33 @@
       margin-bottom: 0;
     }
 
-    /* Scroll hint — pinned to bottom of hero */
-    .scroll-hint {
+    .scroll-arrow {
       position: absolute;
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
       color: rgba(200,230,160,0.6);
+      font-size: 1.8rem;
+      text-decoration: none;
       opacity: 0;
       animation: fadeIn 1s ease 1.4s forwards;
-      text-align: center;
-      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .scroll-arrow:hover { color: var(--gold); }
+
+    /* Clickable tree zones */
+    .tree-zone {
+      position: absolute;
+      z-index: 3;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .tree-zone:hover {
+      background: rgba(200,151,74,0.12);
+      border-color: rgba(200,151,74,0.4);
     }
 
     /* ══════════════════════════════════════════════
@@ -593,7 +604,15 @@
     <h1>Tree of Life<br><em>Stewardship Initiative</em></h1>
     <p class="hero-tagline">A living framework for youth, family &amp; community</p>
   </div>
-  <p class="scroll-hint">Explore the tree ↓</p>
+  <a href="#roots" class="scroll-arrow" aria-label="Scroll down">↓</a>
+
+  <!-- Clickable label zones mapped to tree image positions -->
+  <a href="#leaves"   class="tree-zone" style="left:4%;  top:8%;  width:14%; height:18%;" aria-label="The Leaves — scroll to section"></a>
+  <a href="#branches" class="tree-zone" style="left:1%;  top:27%; width:14%; height:14%;" aria-label="The Branches — scroll to section"></a>
+  <a href="#trunk"    class="tree-zone" style="left:1%;  top:42%; width:14%; height:14%;" aria-label="The Trunk — scroll to section"></a>
+  <a href="#roots"    class="tree-zone" style="left:1%;  top:59%; width:14%; height:18%;" aria-label="The Roots — scroll to section"></a>
+  <a href="#fruit"    class="tree-zone" style="left:85%; top:13%; width:14%; height:18%;" aria-label="The Fruit — scroll to section"></a>
+  <a href="#seeds"    class="tree-zone" style="left:85%; top:40%; width:14%; height:18%;" aria-label="The Seeds — scroll to section"></a>
 </section>
 
 <!-- ══ ROOTS ══════════════════════════════════════════════ -->
@@ -718,7 +737,7 @@
     <h2 class="reveal">Everyone has a <em>place on the tree</em></h2>
     <p class="lead-text reveal">Leaves are seasonal, renewable, and each one different. You don't need to be an expert. You don't need to already care deeply. You just need to show up.</p>
     <div class="leaves-flow reveal">
-      <span class="leaf-tag">Café Kef</span>
+      <span class="leaf-tag">Toddlers at Café Kef</span>
       <span class="leaf-tag">Elementary schoolers</span>
       <span class="leaf-tag">Middle schoolers</span>
       <span class="leaf-tag">High school leaders</span>
