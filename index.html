@@ -172,27 +172,24 @@
     }
     .scroll-arrow:hover { color: var(--gold); }
 
-    /* Typographic tree navigation */
-    .tree-badges {
+    /* Typographic tree words — CSS positioned */
+    .tree-word {
       position: absolute;
-      inset: 0;
-      z-index: 3;
-      pointer-events: none;
-    }
-
-    .tree-label {
+      z-index: 4;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(0.7rem, 1.2vw, 1rem);
+      letter-spacing: 0.15em;
+      color: rgba(200,151,74,0.45);
+      text-decoration: none;
       pointer-events: all;
       cursor: pointer;
-      text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      user-select: none;
     }
-
-    .tree-label-text {
-      transition: opacity 0.4s ease, filter 0.4s ease;
-    }
-
-    .tree-label:hover .tree-label-text {
-      opacity: 1 !important;
-      filter: drop-shadow(0 0 3px rgba(200,151,74,0.9)) drop-shadow(0 0 8px rgba(200,151,74,0.5));
+    .tree-word:hover {
+      color: rgba(200,151,74,1);
+      text-shadow: 0 0 8px rgba(200,151,74,0.8), 0 0 20px rgba(200,151,74,0.4);
     }
 
     /* ══════════════════════════════════════════════
@@ -664,64 +661,13 @@
   <!-- Scroll arrow -->
   <a href="#roots" class="scroll-arrow" aria-label="Scroll down">↓</a>
 
-  <!-- Typographic navigation — words discovered in the tree -->
-  <svg class="tree-badges" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-
-    <!-- leaves — top left dark sky, green circle zone -->
-    <a href="#leaves" class="tree-label" aria-label="The Leaves">
-      <text x="14" y="28" text-anchor="middle"
-        font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.4"
-        fill="#C8E6A0" opacity="0.55" letter-spacing="0.5"
-        class="tree-label-text">leaves</text>
-    </a>
-
-    <!-- branches — stays where it is -->
-    <a href="#branches" class="tree-label" aria-label="The Branches">
-      <text x="30" y="50" text-anchor="middle"
-        font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.4"
-        fill="#C8E6A0" opacity="0.45" letter-spacing="0.5"
-        class="tree-label-text">branches</text>
-    </a>
-
-    <!-- trunk — teal circle, center on trunk -->
-    <a href="#trunk" class="tree-label" aria-label="The Trunk">
-      <text x="50" y="54" text-anchor="middle"
-        font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.4"
-        fill="#C8974A" opacity="0.65" letter-spacing="0.5"
-        class="tree-label-text">trunk</text>
-    </a>
-
-    <!-- roots — red circle, bottom left soil -->
-    <a href="#roots" class="tree-label" aria-label="The Roots">
-      <text x="16" y="74" text-anchor="middle"
-        font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.4"
-        fill="#C8974A" opacity="0.55" letter-spacing="0.5"
-        class="tree-label-text">roots</text>
-    </a>
-
-    <!-- fruit — purple circle, upper right canopy -->
-    <a href="#fruit" class="tree-label" aria-label="The Fruit">
-      <text x="78" y="20" text-anchor="middle"
-        font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.4"
-        fill="#C8974A" opacity="0.55" letter-spacing="0.5"
-        class="tree-label-text">fruit</text>
-    </a>
-
-    <!-- seeds — yellow blob, right side near golden trail -->
-    <a href="#seeds" class="tree-label" aria-label="The Seeds">
-      <text x="84" y="62" text-anchor="middle"
-        font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.4"
-        fill="#C8974A" opacity="0.55" letter-spacing="0.5"
-        class="tree-label-text">seeds</text>
-    </a>
-
-  </svg>
+  <!-- Typographic navigation — CSS positioned, percentage based -->
+  <a href="#leaves"   class="tree-word" style="left:12%; top:26%;">leaves</a>
+  <a href="#branches" class="tree-word" style="left:28%; top:46%;">branches</a>
+  <a href="#trunk"    class="tree-word" style="left:46%; top:52%;">trunk</a>
+  <a href="#roots"    class="tree-word" style="left:12%; top:70%;">roots</a>
+  <a href="#fruit"    class="tree-word" style="left:68%; top:20%;">fruit</a>
+  <a href="#seeds"    class="tree-word" style="left:80%; top:58%;">seeds</a>
 </section>
 
 <!-- ══ ROOTS ══════════════════════════════════════════════ -->
