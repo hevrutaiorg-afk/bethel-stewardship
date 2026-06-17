@@ -181,19 +181,37 @@
     }
     .scroll-arrow:hover { color: var(--gold); }
 
-    /* Clickable tree zones */
-    .tree-zone {
+    /* Clickable tree badges — SVG overlay */
+    .tree-badges {
       position: absolute;
+      inset: 0;
       z-index: 3;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      transition: background 0.2s, border-color 0.2s;
+      pointer-events: none;
+    }
+
+    .tree-badge {
+      pointer-events: all;
       cursor: pointer;
+      text-decoration: none;
     }
-    .tree-zone:hover {
-      background: rgba(200,151,74,0.12);
-      border-color: rgba(200,151,74,0.4);
+
+    .tree-badge circle {
+      transition: fill 0.25s, filter 0.25s;
+      filter: drop-shadow(0 0 4px rgba(200,151,74,0.3));
     }
+
+    .tree-badge:hover circle {
+      fill: rgba(200,151,74,0.25);
+      filter: drop-shadow(0 0 10px rgba(200,151,74,0.8));
+    }
+
+    .tree-badge text {
+      transition: fill 0.25s;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .tree-badge:hover text { fill: #FFD980; }
 
     /* ══════════════════════════════════════════════
        SHARED SECTION STYLES
@@ -659,13 +677,52 @@
   </div>
   <a href="#roots" class="scroll-arrow" aria-label="Scroll down">↓</a>
 
-  <!-- Clickable label zones mapped to tree image positions -->
-  <a href="#leaves"   class="tree-zone" style="left:4%;  top:8%;  width:14%; height:18%;" aria-label="The Leaves — scroll to section"></a>
-  <a href="#branches" class="tree-zone" style="left:1%;  top:27%; width:14%; height:14%;" aria-label="The Branches — scroll to section"></a>
-  <a href="#trunk"    class="tree-zone" style="left:1%;  top:42%; width:14%; height:14%;" aria-label="The Trunk — scroll to section"></a>
-  <a href="#roots"    class="tree-zone" style="left:1%;  top:59%; width:14%; height:18%;" aria-label="The Roots — scroll to section"></a>
-  <a href="#fruit"    class="tree-zone" style="left:85%; top:13%; width:14%; height:18%;" aria-label="The Fruit — scroll to section"></a>
-  <a href="#seeds"    class="tree-zone" style="left:85%; top:40%; width:14%; height:18%;" aria-label="The Seeds — scroll to section"></a>
+  <!-- SVG badge overlay — positioned as % of hero dimensions -->
+  <svg class="tree-badges" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- LEAVES — upper left canopy ~22%, 18% -->
+    <a href="#leaves" class="tree-badge" aria-label="The Leaves">
+      <circle cx="22" cy="18" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
+      <text x="22" y="16.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
+      <text x="22" y="19.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">LEAVES</text>
+    </a>
+
+    <!-- FRUIT — upper right canopy ~78%, 16% -->
+    <a href="#fruit" class="tree-badge" aria-label="The Fruit">
+      <circle cx="78" cy="16" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
+      <text x="78" y="14.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
+      <text x="78" y="17.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">FRUIT</text>
+    </a>
+
+    <!-- BRANCHES — left mid canopy ~18%, 38% -->
+    <a href="#branches" class="tree-badge" aria-label="The Branches">
+      <circle cx="18" cy="38" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
+      <text x="18" y="36.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
+      <text x="18" y="39.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.2">BRANCHES</text>
+    </a>
+
+    <!-- TRUNK — center of trunk ~52%, 52% -->
+    <a href="#trunk" class="tree-badge" aria-label="The Trunk">
+      <circle cx="52" cy="52" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
+      <text x="52" y="50.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
+      <text x="52" y="53.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">TRUNK</text>
+    </a>
+
+    <!-- ROOTS — below ground center-left ~35%, 72% -->
+    <a href="#roots" class="tree-badge" aria-label="The Roots">
+      <circle cx="35" cy="72" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
+      <text x="35" y="70.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
+      <text x="35" y="73.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">ROOTS</text>
+    </a>
+
+    <!-- SEEDS — golden trail right side ~86%, 58% -->
+    <a href="#seeds" class="tree-badge" aria-label="The Seeds">
+      <circle cx="86" cy="58" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
+      <text x="86" y="56.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
+      <text x="86" y="59.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">SEEDS</text>
+    </a>
+
+  </svg>
 </section>
 
 <!-- ══ ROOTS ══════════════════════════════════════════════ -->
