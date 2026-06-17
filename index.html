@@ -120,49 +120,40 @@
     }
 
     .etz-chayim {
-      margin-top: 1.8rem;
-      padding: 1.2rem 1.8rem;
-      border-top: 1px solid rgba(200,151,74,0.3);
-      border-bottom: 1px solid rgba(200,151,74,0.3);
-      text-align: center;
+      position: absolute;
+      bottom: 3.5rem;
+      right: 2rem;
+      text-align: right;
+      z-index: 2;
       opacity: 0;
-      animation: fadeDown 0.8s ease 0.8s forwards;
+      animation: fadeIn 1s ease 1s forwards;
+      max-width: 260px;
     }
 
     .etz-hebrew {
       font-family: var(--font-display);
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-size: clamp(0.8rem, 1.4vw, 0.95rem);
       color: var(--gold);
       line-height: 1.8;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
       direction: rtl;
-      unicode-bidi: bidi-override;
-    }
-
-    .etz-transliteration {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: clamp(0.85rem, 1.8vw, 1rem);
-      color: rgba(200,230,160,0.7);
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.02em;
     }
 
     .etz-english {
       font-family: var(--font-display);
       font-style: italic;
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      color: var(--white);
-      line-height: 1.6;
-      margin-bottom: 0.5rem;
+      font-size: clamp(0.72rem, 1.2vw, 0.84rem);
+      color: rgba(255,255,255,0.72);
+      line-height: 1.5;
+      margin-bottom: 0.3rem;
     }
 
     .etz-source {
       font-family: var(--font-mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(200,151,74,0.6);
+      color: rgba(200,151,74,0.5);
       display: block;
     }
 
@@ -664,62 +655,69 @@
 
 <!-- ══ HERO ══════════════════════════════════════════════ -->
 <section class="hero">
+
+  <!-- Title — top dark sky -->
   <div class="hero-text">
     <span class="eyebrow">North Suburban Synagogue Beth El · Highland Park, IL</span>
     <h1>Tree of Life<br><em>Stewardship Initiative</em></h1>
     <p class="hero-tagline">A living framework for youth, family &amp; community</p>
-    <div class="etz-chayim">
-      <p class="etz-hebrew">עֵץ חַיִּים הִיא לַמַּחֲזִיקִים בָּהּ וְתֹמְכֶיהָ מְאֻשָּׁר</p>
-      <p class="etz-transliteration">Etz chayim hi la'machazikim bah, v'tom'cheha me'ushar.</p>
-      <p class="etz-english">"It is a tree of life to those who hold fast to it,<br>and all who support it are fortunate."</p>
-      <span class="etz-source">Proverbs 3:18</span>
-    </div>
   </div>
+
+  <!-- Etz Chayim — bottom right dark corner, small and quiet -->
+  <div class="etz-chayim">
+    <p class="etz-hebrew">עֵץ חַיִּים הִיא לַמַּחֲזִיקִים בָּהּ</p>
+    <p class="etz-english">"It is a tree of life to those who hold fast to it."</p>
+    <span class="etz-source">Proverbs 3:18</span>
+  </div>
+
+  <!-- Scroll arrow -->
   <a href="#roots" class="scroll-arrow" aria-label="Scroll down">↓</a>
 
-  <!-- SVG badge overlay — positioned as % of hero dimensions -->
+  <!-- Six small badges — dark margins only, nothing over the tree -->
   <svg class="tree-badges" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
 
-    <!-- LEAVES — upper left canopy ~22%, 18% -->
+    <!-- LEFT COLUMN — in dark sky/margin left of canopy -->
+    <!-- LEAVES — left, upper -->
     <a href="#leaves" class="tree-badge" aria-label="The Leaves">
-      <circle cx="22" cy="18" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
-      <text x="22" y="16.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
-      <text x="22" y="19.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">LEAVES</text>
+      <circle cx="8" cy="30" r="3.5" fill="rgba(8,18,10,0.85)" stroke="#C8974A" stroke-width="0.3"/>
+      <text x="8" y="29.2" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.4" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">THE</text>
+      <text x="8" y="31.1" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.3" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">LEAVES</text>
     </a>
 
-    <!-- FRUIT — upper right canopy ~78%, 16% -->
-    <a href="#fruit" class="tree-badge" aria-label="The Fruit">
-      <circle cx="78" cy="16" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
-      <text x="78" y="14.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
-      <text x="78" y="17.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">FRUIT</text>
-    </a>
-
-    <!-- BRANCHES — left mid canopy ~18%, 38% -->
+    <!-- BRANCHES — left, mid -->
     <a href="#branches" class="tree-badge" aria-label="The Branches">
-      <circle cx="18" cy="38" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
-      <text x="18" y="36.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
-      <text x="18" y="39.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.2">BRANCHES</text>
+      <circle cx="8" cy="43" r="3.5" fill="rgba(8,18,10,0.85)" stroke="#C8974A" stroke-width="0.3"/>
+      <text x="8" y="42.2" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.4" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">THE</text>
+      <text x="8" y="44.1" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.1" fill="#C8E6A0" font-weight="bold" letter-spacing="0.05">BRANCHES</text>
     </a>
 
-    <!-- TRUNK — center of trunk ~52%, 52% -->
+    <!-- TRUNK — left, lower mid -->
     <a href="#trunk" class="tree-badge" aria-label="The Trunk">
-      <circle cx="52" cy="52" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
-      <text x="52" y="50.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
-      <text x="52" y="53.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">TRUNK</text>
+      <circle cx="8" cy="56" r="3.5" fill="rgba(8,18,10,0.85)" stroke="#C8974A" stroke-width="0.3"/>
+      <text x="8" y="55.2" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.4" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">THE</text>
+      <text x="8" y="57.1" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.3" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">TRUNK</text>
     </a>
 
-    <!-- ROOTS — below ground center-left ~35%, 72% -->
+    <!-- ROOTS — left, dark soil strip above value labels -->
     <a href="#roots" class="tree-badge" aria-label="The Roots">
-      <circle cx="35" cy="72" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
-      <text x="35" y="70.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
-      <text x="35" y="73.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">ROOTS</text>
+      <circle cx="8" cy="69" r="3.5" fill="rgba(8,18,10,0.85)" stroke="#C8974A" stroke-width="0.3"/>
+      <text x="8" y="68.2" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.4" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">THE</text>
+      <text x="8" y="70.1" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.3" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">ROOTS</text>
     </a>
 
-    <!-- SEEDS — golden trail right side ~86%, 58% -->
+    <!-- RIGHT COLUMN — dark sky/margin right of canopy -->
+    <!-- FRUIT — right, upper -->
+    <a href="#fruit" class="tree-badge" aria-label="The Fruit">
+      <circle cx="92" cy="30" r="3.5" fill="rgba(8,18,10,0.85)" stroke="#C8974A" stroke-width="0.3"/>
+      <text x="92" y="29.2" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.4" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">THE</text>
+      <text x="92" y="31.1" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.3" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">FRUIT</text>
+    </a>
+
+    <!-- SEEDS — right, near golden trail -->
     <a href="#seeds" class="tree-badge" aria-label="The Seeds">
-      <circle cx="86" cy="58" r="5.5" fill="rgba(10,25,15,0.65)" stroke="#C8974A" stroke-width="0.4"/>
-      <text x="86" y="56.8" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">THE</text>
-      <text x="86" y="59.6" text-anchor="middle" font-family="'DM Mono',monospace" font-size="2.2" fill="#C8E6A0" font-weight="bold" letter-spacing="0.3">SEEDS</text>
+      <circle cx="92" cy="56" r="3.5" fill="rgba(8,18,10,0.85)" stroke="#C8974A" stroke-width="0.3"/>
+      <text x="92" y="55.2" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.4" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">THE</text>
+      <text x="92" y="57.1" text-anchor="middle" font-family="'DM Mono',monospace" font-size="1.3" fill="#C8E6A0" font-weight="bold" letter-spacing="0.1">SEEDS</text>
     </a>
 
   </svg>
