@@ -666,80 +666,58 @@
 
   <!-- Typographic navigation — words discovered in the tree -->
   <svg class="tree-badges" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="textglow" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="0.4" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-      <filter id="textglowhover" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="1.2" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
 
-    <!-- roots — in the root zone, centered below trunk -->
-    <a href="#roots" class="tree-label" aria-label="The Roots">
-      <text x="50" y="82" text-anchor="middle"
-        font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.8"
-        fill="#C8974A" opacity="0.45"
-        letter-spacing="0.8"
-        filter="url(#textglow)"
-        class="tree-label-text">roots</text>
-    </a>
-
-    <!-- trunk — on the trunk, vertical feel, centered -->
-    <a href="#trunk" class="tree-label" aria-label="The Trunk">
-      <text x="50" y="62" text-anchor="middle"
-        font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.2"
-        fill="#C8974A" opacity="0.38"
-        letter-spacing="0.6"
-        filter="url(#textglow)"
-        class="tree-label-text">trunk</text>
-    </a>
-
-    <!-- branches — left canopy, angled naturally -->
-    <a href="#branches" class="tree-label" aria-label="The Branches">
-      <text x="28" y="38" text-anchor="middle"
-        font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.2"
-        fill="#C8E6A0" opacity="0.35"
-        letter-spacing="0.5"
-        filter="url(#textglow)"
-        class="tree-label-text">branches</text>
-    </a>
-
-    <!-- leaves — upper canopy, light -->
+    <!-- leaves — upper canopy center -->
     <a href="#leaves" class="tree-label" aria-label="The Leaves">
-      <text x="38" y="18" text-anchor="middle"
+      <text x="45" y="14" text-anchor="middle"
         font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.2"
-        fill="#C8E6A0" opacity="0.32"
-        letter-spacing="0.5"
-        filter="url(#textglow)"
+        font-style="italic" font-size="2.4"
+        fill="#C8E6A0" opacity="0.38" letter-spacing="0.5"
         class="tree-label-text">leaves</text>
     </a>
 
-    <!-- fruit — right canopy near a glow node -->
+    <!-- fruit — right canopy, near glow nodes -->
     <a href="#fruit" class="tree-label" aria-label="The Fruit">
-      <text x="72" y="28" text-anchor="middle"
+      <text x="74" y="30" text-anchor="middle"
         font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.2"
-        fill="#C8974A" opacity="0.38"
-        letter-spacing="0.5"
-        filter="url(#textglow)"
+        font-style="italic" font-size="2.4"
+        fill="#C8974A" opacity="0.42" letter-spacing="0.5"
         class="tree-label-text">fruit</text>
+    </a>
+
+    <!-- branches — left canopy spread -->
+    <a href="#branches" class="tree-label" aria-label="The Branches">
+      <text x="24" y="36" text-anchor="middle"
+        font-family="'Playfair Display',Georgia,serif"
+        font-style="italic" font-size="2.4"
+        fill="#C8E6A0" opacity="0.35" letter-spacing="0.5"
+        class="tree-label-text">branches</text>
+    </a>
+
+    <!-- trunk — on the visible trunk center -->
+    <a href="#trunk" class="tree-label" aria-label="The Trunk">
+      <text x="52" y="56" text-anchor="middle"
+        font-family="'Playfair Display',Georgia,serif"
+        font-style="italic" font-size="2.4"
+        fill="#C8974A" opacity="0.42" letter-spacing="0.5"
+        class="tree-label-text">trunk</text>
+    </a>
+
+    <!-- roots — below ground, in root zone -->
+    <a href="#roots" class="tree-label" aria-label="The Roots">
+      <text x="42" y="76" text-anchor="middle"
+        font-family="'Playfair Display',Georgia,serif"
+        font-style="italic" font-size="2.4"
+        fill="#C8974A" opacity="0.42" letter-spacing="0.5"
+        class="tree-label-text">roots</text>
     </a>
 
     <!-- seeds — near the golden trail, right side -->
     <a href="#seeds" class="tree-label" aria-label="The Seeds">
-      <text x="84" y="58" text-anchor="middle"
+      <text x="86" y="58" text-anchor="middle"
         font-family="'Playfair Display',Georgia,serif"
-        font-style="italic" font-size="2.2"
-        fill="#C8974A" opacity="0.38"
-        letter-spacing="0.5"
-        filter="url(#textglow)"
+        font-style="italic" font-size="2.4"
+        fill="#C8974A" opacity="0.42" letter-spacing="0.5"
         class="tree-label-text">seeds</text>
     </a>
 
